@@ -1,11 +1,14 @@
 import axios from 'axios';
 
-// Use relative URL for the secure Vite proxy
+// Use relative URL for the secure proxy
+// In dev: Vite proxies /api to https://api.svgapi.com/v1/Ty5WcDa63E
+// In prod: Vercel maps /api/list to api/list.js function
 const BASE_URL = '/api';
 
 export const searchIcons = async (query, limit = 20, start = 0) => {
  try {
-  const response = await axios.get(`${BASE_URL}/list/`, {
+  // We call /api/list which is handled by either Vite or Vercel Functions
+  const response = await axios.get(`${BASE_URL}/list`, {
    params: {
     search: query,
     limit: limit,
