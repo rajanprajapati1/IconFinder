@@ -6,9 +6,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/v1': {
-        target: 'https://api.svgapi.com',
+      '/api': {
+        target: 'https://api.svgapi.com/v1/Ty5WcDa63E',
         changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
         secure: false,
       }
     }

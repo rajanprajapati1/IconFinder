@@ -1,25 +1,11 @@
 import axios from 'axios';
 
-// Use relative URL for Vite proxy to handle CORS
-const BASE_URL = '/v1';
-
-let domainKey = 'Ty5WcDa63E';
-
-export const setDomainKey = (key) => {
- // Ensure we don't have leading/trailing slashes in the key
- domainKey = key.replace(/^\/+|\/+$/g, '');
-};
-
-export const getDomainKey = () => domainKey;
+// Use relative URL for the secure Vite proxy
+const BASE_URL = '/api';
 
 export const searchIcons = async (query, limit = 20, start = 0) => {
- if (!domainKey) {
-  throw new Error('API Configuration missing.');
- }
-
  try {
-  // Construct URL carefully to avoid double slashes
-  const response = await axios.get(`${BASE_URL}/${domainKey}/list/`, {
+  const response = await axios.get(`${BASE_URL}/list/`, {
    params: {
     search: query,
     limit: limit,
@@ -34,3 +20,7 @@ export const searchIcons = async (query, limit = 20, start = 0) => {
 };
 
 export const getIconUrl = (id) => `https://cdn.svgapi.com/vector/${id}.svg`;
+
+// Mock these for App.jsx compatibility during transition
+export const setDomainKey = () => { };
+export const getDomainKey = () => "proxy-protected";

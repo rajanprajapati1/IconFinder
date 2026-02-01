@@ -35,8 +35,6 @@ function App() {
   };
 
   useEffect(() => {
-    const defaultKey = 'Ty5WcDa63E';
-    setDomainKey(defaultKey);
     fetchIcons('apple');
 
     // Add Cmd+K / Ctrl+K listener
